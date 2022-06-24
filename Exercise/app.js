@@ -11,19 +11,23 @@ function orderFood(hasToken, time) {
 }
 
 const serve = () => console.log('food is served');
+
 const deny = () => console.log('nooo food');
 
-function orderFoodByCallback(hasToken, time, serve, deny) {
+export function orderFoodByCallback(hasToken, time, serve, deny) {
     if(hasToken && time < 17)
         serve();
     else {
-        // deny();
-        throw new CustomError("no food for now");
+        deny();
     }
 }
 
-orderFood(true, 13)
-.then(res => console.log(res))
-.catch(err => console.log(err))
+export function logFunction () {
+    console.log('this is a test');
+}
 
-orderFoodByCallback(true, 19, serve, deny);
+// orderFood(true, 13)
+// .then(res => console.log(res))
+// .catch(err => console.log(err))
+
+// orderFoodByCallback(true, 19, serve, deny);
