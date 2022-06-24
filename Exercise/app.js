@@ -1,3 +1,5 @@
+import {CustomError} from "./customError.js"
+
 function orderFood(hasToken, time) {
     return new Promise((resolve, reject) => {
         if(hasToken && time > 9 && time <= 17)
@@ -8,16 +10,16 @@ function orderFood(hasToken, time) {
     })
 }
 
-const orderFoodByCallbackPromisified = Promise.promisfy(orderFoodByCallback);
-
 const serve = () => console.log('food is served');
 const deny = () => console.log('nooo food');
 
 function orderFoodByCallback(hasToken, time, serve, deny) {
     if(hasToken && time < 17)
         serve();
-    else
-        deny();
+    else {
+        // deny();
+        throw new CustomError("no food for now");
+    }
 }
 
 orderFood(true, 13)
